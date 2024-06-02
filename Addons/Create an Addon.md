@@ -55,6 +55,19 @@ released/
  				client.css.w
 ```
 
+## Manifest your Addon
+
+Add this to you `manifest.w`
+
+```
+name			Tasks
+description		Get things done with your team!
+build			1
+```
+
+In Dewaan, go to `Addons` & you'll see `Tasks` show up there!  
+*You might have to reload Dewaan in the browser if it doesn't show up on its own*
+
 ## Setup the Client
 
 ### The base
@@ -106,8 +119,9 @@ Add `Sidebar` to the `addon globals`.
 ```js
 let Tasks = {},
 	Sidebar,
-...
+	...
 ```
+
 In the `addon-activate` hook, check if `Sidebar` is available, assign it to the addon global `Sidebar`.  
 If it is available, we'll add our `Tasks` entry 
 
@@ -123,6 +137,9 @@ if (Sidebar) {
 }
 ```
 
+In Dewaan, (after a reload), if you tap on the `Tasks` entry in the Sidebar, it won't do much,  
+in the browser console (F12 DevTools), you'll see "View not found", so let's...
+
 ### Create the `tasks` View
 
 In `client.htm.w`
@@ -130,7 +147,40 @@ In `client.htm.w`
 ```bash
 [view=tasks]
 	b "To make it obvious! This is the Tasks View, remove this bold element later"
-	[id=list]
+```
+
+Check Dewaan again (reload), you'll see this view show up whenever you tap on `Tasks` in the Sidebar.
+
+Although it still doesn't show our icon or title in the header, so let's handle that...
+
+### Webapp Header Title & Icon
+
+Add the `view-ready` hook & whenever our tasks view becomes ready & fully active (nothing blocking it),  
+we set the Webapp's header to our module's title along with our `icon.svg`:
+
+```js
+let hook_view_ready = Hooks.set('view-ready', async function ( { uid } ) { if (View.is_active_fully( module_name )) {
+	// this sets the header title, subtitle and the icon
+	Webapp.header([ module_title, 0, Addons.get_icon(module_name) ]);
+} });
+```
+Also be sure to `remove` this new hook in the `addon-disable` hook:
+
+```js
+	...
+	hook_view_ready.remove();
+	...
+```
+
+### Setup the Tasks List
+
+Add `tasks_view_keys` & `tasks_list` to the `addon globals`, & get the keys
+```js
+let Tasks = {},
+	Sidebar,
+	tasks_view_keys,
+	tasks_list,
+	...
 ```
 
 
