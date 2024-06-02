@@ -29,11 +29,24 @@ These are the major steps we'll take to create the addon:
 
 ## Create the Skeleton
 
-* Create a **tasks** folder in **released/addons**
-* Create **manifest.w**
-* Copy **mudeer/icons/doneall.svg** here and rename it to **icon.svg**
-* Create **client.js** and a folder called **client**
-	* Create **client.htm.w** & **client.css.w** inside the **client** folder
+* Create a `tasks` folder in `released/addons`
+* Create `manifest.w`
+* Copy `mudeer/icons/doneall.svg` here and rename it to `icon.svg`
+* Create `client.js` and a folder called `client`
+	* Create `client.htm.w` & `client.css.w` inside the `client` folder
+
+Your directory tree should end up looking like this:
+```
+released/
+	addons/
+		tasks/
+			manifest.w
+			icon.svg
+			client.js
+			client/
+ 				client.htm.w
+ 				client.css.w
+```
 
 ## Setup the Client
 
@@ -57,7 +70,7 @@ Start by setting up your **client.js** to look like this:
 
 ### Hook into Activation & Disable events
 
-Next we'll add two hooks, **addon-activate** & **addon-disable**
+Next we'll add two hooks, `addon-activate` & `addon-disable`
 Any resources we acquire must be released or destroyed when our addon is disabled. This also helps prevent memory leaks.
 
 
@@ -75,9 +88,9 @@ let hook_disable = Hooks.set('addon-disable', async function ( { uid } ) { if (u
 
 ```
 
-### Add your 
+### Add your Addon to the Sidebar
 
-
+In the `addon-activate` hook, 
 
 
 
