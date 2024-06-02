@@ -127,7 +127,7 @@ if (Sidebar) {
 
 In `client.htm.w`
 
-```assembly
+```bash
 [view=tasks]
 	b "To make it obvious! This is the Tasks View, remove this bold element later"
 	[id=list]
