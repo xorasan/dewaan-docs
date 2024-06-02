@@ -4,6 +4,7 @@
 
 This tutorial assumes that you have at least an extremely basic understanding of the following:
 * Installing & running Dewaan (the development version)
+* Setup Codelite & add Mudeer as external tools
 * Sidebar
 * Views
 * Sheets
