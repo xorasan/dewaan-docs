@@ -141,6 +141,12 @@ if (Sidebar) {
 In Dewaan, (after a reload), if you tap on the `Tasks` entry in the Sidebar, it won't do much,  
 in the browser console (F12 DevTools), you'll see "View not found", so let's...
 
+Also remove your addon's entry from the Sidebar when your addon is being disabled.  
+Add this to the disable hook:
+```
+Sidebar.remove(uid);
+```
+
 ### Create the `tasks` View
 
 In `client.htm.w`
