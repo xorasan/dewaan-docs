@@ -195,6 +195,12 @@ Get the View dom keys in the `addon-activate` hook
 tasks_view_keys = Views.dom_keys( module_name );
 ```
 
+Add a list element to the tasks view:
+```bash
+[view=tasks]
+	[id=list]
+```
+
 Create a Template called `task_item` in `client.htm.w`
 ```js
 [template=task_item] .soft_item .task_item .flex
