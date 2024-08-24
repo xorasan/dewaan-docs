@@ -107,7 +107,7 @@ my_recycler.get_adapter(); // if there's any
 ## Events
 
 ```js
-// *cepts allow filter and overriding requests maid by recycler
+// *cepts allow filter and overriding requests made by recycler
 // called before fetching 'get' or 'count'
 // uid is optional, function can be the first arg
 recycler.add_intercept( uid, async function ({ need, payload }) {
@@ -129,6 +129,9 @@ recycler.remove_postcept( need );
 ## TODO
 
 ```js
+// create these using set_hook
+.before_set
+.after_set
 ```
 
 
