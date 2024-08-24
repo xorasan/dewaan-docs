@@ -1,5 +1,7 @@
 # Recycler
 
+A recycler allows you to display potentially infinite amounts of data in a list (+ grid). When connected with a [Synchronizer](./Synchronizer.md) & [Database](./Database.md), it can cache data in memory (+ storage) and receive updates from the server to whatever data it contains.
+
 ## Create a new Recycler
 ```js
 let my_recycler = Recycler( list, name, need = 'default', size = 20 );
@@ -30,13 +32,20 @@ await my_recycler.destroy();
 
 ## Add a new entry
 
-```js
 Takes an object or an array of objects
+
+```js
 my_recycler.set( {
     uid: 'one', // unique ID to refer to later
     title: 'One',
+    order: number, // optional
 } );
 ```
+
+* `order` determines the rough position of the object
+	* it goes over elements until it finds the nearest order index smaller than or equal to the provided number
+	* objects with order index smaller than or greater than `recycler.start` or `recycler.end` are filtered out
+	* Recycler can show hints about filtered objects like how many objects were inserted or updated or removed before `recycler.start` or `recycler.end`
 
 ## Delete entries
 
@@ -59,6 +68,8 @@ my_recycler.set( {
 ```js
 my_recycler.get_elements();
 my_recycler.get_objects();
+// IMPORTANT you should check this to filter out the prev/next buttons
+my_recycler.is_internal({ uid }); // does this object belong to the recycler
 ```
 
 ## Counts
@@ -96,6 +107,23 @@ my_recycler.get_adapter(); // if there's any
 ## Events
 
 ```js
+// *cepts allow filter and overriding requests maid by recycler
+// called before fetching 'get' or 'count'
+// uid is optional, function can be the first arg
+recycler.add_intercept( uid, async function ({ need, payload }) {
+    return 0; // disallow
+    return 1; // allow
+} );
+recycler.remove_intercept( need );
+
+// called after fetching 'get' or 'count'
+// uid is optional, function can be the first arg
+recycler.add_postcept( uid, async function ({ need, payload, result }) {
+    return 0; // disallow
+    return 1; // allow
+} );
+recycler.remove_postcept( need );
+
 ```
 
 ## TODO

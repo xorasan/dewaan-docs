@@ -36,7 +36,8 @@ Hooks.set('database-sync', [name, need], async function ({ action, object }) {
 });
 ```
 
-Add an object to store:
+### Add an object to store
+
 ```js
 my_store.set( object );
 ```

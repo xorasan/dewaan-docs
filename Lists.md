@@ -4,7 +4,7 @@
 ```js
 let my_list = List( element )
                 .id_prefix( my_id )
-                .list_item( template );
+                .template( template );
 ```
 
 * `id_prefix` makes the list entries unique, across multiple lists.  `my_id`  will be prepended to the `uid` of all new items
@@ -101,6 +101,7 @@ my_list.prevent_focus(1); // prevents the list from becoming focussed on selecti
 my_list.set_reversed(1); // reverses navigation order
 my_list.set_focus(1); // only focussed lists receive key presses
 my_list.set_visibility(1);
+my_list.select_sk = { ... }; // assign a Softkey object to override the select key
 ```
 
 ## Events
@@ -149,10 +150,17 @@ before_removal
 hide | show
 ```
 
+## Useful Tips
 
+* Use `.soft_item` on your `template` & it will be given some basic list item behavior like selection, highlight, marking, dynamic padding, Softkey elusion, ...
 
 ## Features Planned for the Future
 
-* Select multiple items
-* ...
+* Select (mark) multiple items, independent of `selection`, `.marked`
+* Softkeys that overlap list items should be accurately detected & those specific items should get a temporary padding
+  * Make this smooth on scrolling & resize events
+
+* Scrolling algorithm improvement, when an items height is larger than half the screen size,
+  it should scroll the container until the next item is at least visible 25% or more before handing off the selection to it
+  this gives a better more stable UX
 
