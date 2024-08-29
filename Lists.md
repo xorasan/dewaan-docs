@@ -15,6 +15,8 @@ let my_list = List( element )
 ```js
 my_list.set( {
     uid: 'one', // unique ID to refer to later
+    // or
+    uid: -1, // for syncing items with Server
     title: 'One',
 } );
 ```
@@ -31,6 +33,7 @@ my_list.remove_all();
 ```js
 my_list.set( {
     uid: 'one', // <- old uid to target the previously inserted entry
+    ruid: -1, // optional, you get this from Server when you submit it as uid: -1
     title: 'New Title',
 } );
 ```
@@ -131,6 +134,9 @@ my_list.after_set = function ( object, clone, keys ) {
     innertext( keys.title, object.title +' - '+ Time.now() );
     return object;
 };
+my_list.on_focus(function ({ has_focus, list }) {
+   
+});
 ```
 
 ## TODO
@@ -143,7 +149,6 @@ freeflow
 set_scrolling_element
 deselect
 upon_[start | end | past_start | past_end]
-on_focus
 is_focussed
 adapter
 before_removal

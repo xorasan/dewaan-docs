@@ -97,11 +97,12 @@ On the server, Synchronizer sets up hooks to receive network requests like `sync
 It provides events to intercept its logic:
 
 * `counter`
-* `validator` incoming objects are validated to expected structure and types
-  * return 0 to mark an object invalid, the object will be saved either way to allow users to fix their mistakes
-  * return false to reject the object, it won't be saved or removed, ask user to try again
+* `validator` incoming objects are validated to expected structure & types
+  * you **should** return `{ valid, object }`
+  * if `valid` is `0`, the object is marked invalid, the object will be saved either way to allow collaboration to fix mistakes `.invalid = 1`
+  * if `valid` is `false`, the object is rejected & skipped, it won't be saved or removed, ask user to try again, `.rejected = 1`
   * you **should** also use this step to discard extra (potentially malicious) data & ensure correct structure
-
+  
 * `before-get` & `after-get` when Client requests objects
   * `before-get-range` & `after-get-range`
   * `before-get-by-uids` & `after-get-by-uids`
@@ -157,12 +158,24 @@ my_synchro.module_name; // the Addon that calls this is automatically assigned h
 
 ## Near
 
+* save ranges per variant, deliver updates per variant
+
+* Client should be able to subscribe to variant updates it's interested in
+
+  * ```js
+    my_synchro.enable_variant( varant_name );
+    my_synchro.disable_variant( varant_name );
+    ```
+
 * periodic removal & its hooks
-* creating new objects
+
+* **DONE** creating new objects
+
   * `ruid -> uid` conversion needs to be handled
 
 * `get-range`
-  * `before-get-range` & `after-get-range` need to be implemented, same with `get-count`
+
+  * **DONE** `before-get-range` & `after-get-range` need to be implemented, same with `get-count`
   * support for `has_more` & `infinite` list strategy
 
 
