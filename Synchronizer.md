@@ -111,10 +111,11 @@ It provides events to intercept its logic:
   * `before_save` is used for access control, return 1 to allow, 0 to reject
   * `after_save` can be used to save a copy of the object somewhere else
 * `before-removal` & `after-removal`
-* `sanitizer`
+* `sanitizer ({ connection, objects[, active_variant, start, end, args] })`
   * this is triggered whenever objects are about to be sent out to a Client
   * you can use it to delete or change properties
-
+  * `active_variant, start, end, args` are not always available
+  
 * `reporter`
 
 
