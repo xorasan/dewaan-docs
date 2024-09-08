@@ -38,6 +38,7 @@ collect_hook( hook ); // for working with built-in modules
 ```js
 // doc these
 get_addon_context();
+addon_build_number; // addon.manifest.build
 'addons-function-call'; // hook use case
 ```
 

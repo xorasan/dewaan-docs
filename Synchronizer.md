@@ -19,6 +19,7 @@ It offers almost the same API on both sides. A `Synchronizer` constructor.
 let my_synchro = Synchronizer({
     name,
     recycler, // optional
+    recycler_view, // optional, default view for recycler (uses name by default)
     list: { // optional, will create auto-create a List & Recycler for you
         element: <HTMLElement>, // required
         id_prefix: 'string', // optional, default: name

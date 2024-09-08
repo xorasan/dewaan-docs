@@ -4,7 +4,13 @@ A recycler allows you to display potentially infinite amounts of data in a list 
 
 ## Create a new Recycler
 ```js
-let my_recycler = Recycler( list, name, need = 'default', size = 20 );
+let my_recycler = Recycler({
+    list,
+    name,
+    need = 'default',
+    size = 20,
+    debug,
+});
 ```
 
 * `name` & `need` is used to save data and make network requests, `name` is usually your `module_name`
@@ -132,6 +138,7 @@ recycler.remove_postcept( need );
 // create these using set_hook
 .before_set
 .after_set
+// when disabled, show visible hints that it is so, helpful in debugging
 ```
 
 
