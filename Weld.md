@@ -1,6 +1,10 @@
 # Weld
 
+Weld is used to generate extremely simple HTML, CSS and JavaScript for a minimalist Progressive Web App.
 
+Weld is designed to be simple & not feature-rich, with a tiny foot-print.
+
+## HTML
 
 ```python
 div .class .class [id=name]
@@ -14,11 +18,12 @@ div .class .class [id=name]
 </div>
 ```
 
-
+## CSS
 
 ## TODO
 
 ```js
+css
 
 ```
 
