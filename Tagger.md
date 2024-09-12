@@ -8,7 +8,8 @@ Tagger is a multi-selection search box.
 * Currently selected tag can be made editable by tapping on it or hitting enter.
 
 ## TODO
-
+* make a search box, and add an entry inside it... you should get suggestions when typing.
+* two lists in the search box... choose suggestions... create an array of suggestions.
 
 
 ## Features Planned for the Future
